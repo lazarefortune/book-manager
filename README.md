@@ -18,7 +18,7 @@ J’ai pris le temps de poser une base propre, fonctionnelle et de développer l
 
 ---
 
-## ⚙️ Installation locale
+## Installation locale
 
 ### 1. Cloner le projet
 
