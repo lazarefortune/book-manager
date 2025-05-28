@@ -1,0 +1,42 @@
+[type='text'],
+[type='email'],
+[type='url'],
+[type='password'],
+[type='number'],
+[type='date'],
+[type='datetime-local'],
+[type='month'],
+[type='search'],
+[type='tel'],
+[type='time'],
+[type='week'],
+textarea,
+select {
+  @apply appearance-none;
+}
+
+.form-input {
+  @apply block w-full appearance-none rounded-xl border-0 px-4 py-3 text-base  shadow-sm text-slate-900 placeholder-slate-400;
+  @apply border border-slate-200;
+  @apply focus:border-2 focus:border-slate-950 focus:outline-offset-2;
+}
+
+.form-textarea {
+  @apply block px-4 py-3 w-full appearance-none rounded-xl border text-base text-slate-900 shadow-sm placeholder-slate-400 border-slate-200 bg-slate-50;
+}
+
+.form-select {
+  @apply rounded-xl border text-base text-slate-900 dark:text-slate-950 border-slate-300 bg-white;
+}
+
+.form-checkbox {
+  @apply h-5 w-5 cursor-pointer rounded-md border border-slate-300 bg-slate-50 text-slate-600 hover:bg-slate-100 focus:ring-slate-800 focus:ring-1;
+}
+
+.form-error {
+  @apply block px-2 text-sm text-red-600 dark:text-red-400;
+}
+
+.form-label {
+  @apply block uppercase text-sm font-normal leading-6 text-slate-700 mb-0.5;
+}

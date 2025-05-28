@@ -13,4 +13,11 @@ final class HomeController extends AbstractController
     {
         return $this->render('home/index.html.twig');
     }
+
+    #[Route('/ui', name: 'app_ui')]
+    public function ui(): Response
+    {
+        return $this->render('home/ui.html.twig');
+    }
+
 }

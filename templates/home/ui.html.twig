@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UI Element{% endblock %}
+
+{% block body %}
+    <div class="container-box py-10">
+        <div class="max-w-5xl mx-auto border border-slate-100 px-2 py-10 rounded-xl space-y-3">
+            <h1 class="h1">UI ELEMENTS</h1>
+            <div>
+                <label for="firstname" class="form-label">Label(.form-label)</label>
+                <input type="text" id="firstname" placeholder=".form-input" class="form-input">
+            </div>
+            <textarea name="" class="form-textarea" placeholder=".form-textarea" id="" cols="30" rows="10"></textarea>
+            <button class="btn btn-primary">.btn .btn-primary</button>
+            <button class="btn btn-outline">.btn .btn-primary</button>
+            <button class="btn btn-light">.btn .btn-primary</button>
+            <button class="btn btn-danger">.btn .btn-primary</button>
+            <div>
+                <a href="">Ceci est un lien</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

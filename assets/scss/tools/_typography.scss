@@ -1,0 +1,43 @@
+@font-face {
+  font-family: 'Inter Var';
+  src: url('../../fonts/Inter/Inter-VariableFont_slnt,wght.ttf');
+}
+
+a {
+  @apply text-blue-600 hover:text-slate-900 no-underline hover:underline;
+}
+
+p {
+  @apply text-base text-slate-900 dark:text-white;
+}
+
+.h1 {
+  @apply font-inter text-4xl font-medium text-slate-900;
+}
+
+.h2 {
+  @apply font-inter text-3xl font-medium text-slate-900;
+}
+
+.h3 {
+  @apply font-inter text-2xl font-medium text-slate-900;
+}
+
+.h4 {
+  @apply font-inter text-xl font-medium text-slate-900;
+}
+
+.h5 {
+  @apply font-inter text-lg font-medium text-slate-900;
+}
+
+.h6 {
+  @apply font-inter text-base font-medium text-slate-900;
+}
+
+h1, h2, h3, h4, h5, h6,
+h1 *, h2 *, h3 *, h4 *, h5 *, h6 *,
+.h1, .h2, .h3, .h4, .h5, .h6,
+.h1 *, .h2 *, .h3 *, .h4 *, .h5 *, .h6 * {
+  @apply font-inter text-slate-900;
+}
