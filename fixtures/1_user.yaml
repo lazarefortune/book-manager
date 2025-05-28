@@ -1,0 +1,14 @@
+App\Entity\User:
+  user_admin:
+    name: Jonh1
+    email: admin@gmail.com
+    isVerified: true
+    roles: [ROLE_ADMIN]
+    password: <passwordHash('admin123')>
+
+  user_demo:
+    name: Jonh2
+    email: user@gmail.com
+    isVerified: true
+    roles: []
+    password: <passwordHash('user123')>

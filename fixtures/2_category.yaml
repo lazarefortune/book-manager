@@ -1,0 +1,11 @@
+App\Entity\Category:
+  category_roman:
+    name: Roman
+  category_essai:
+    name: Essai
+  category_bd:
+    name: BD
+  category_poesie:
+    name: Poésie
+  category_sf:
+    name: SF

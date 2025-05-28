@@ -1,0 +1,15 @@
+App\Entity\Book:
+  book_{1..10}:
+    title: <sentence(3)>
+    author: <name()>
+    summary: <paragraph()>
+    publishedAt: <dateTimeBetween('-10 years','now')>
+    isAvailable: <boolean(80)>
+    owner: '@<randomElement([user_admin, user_demo])>'
+    category: '@<randomElement([
+        category_roman,
+        category_essai,
+        category_bd,
+        category_poesie,
+        category_sf
+    ])>'
