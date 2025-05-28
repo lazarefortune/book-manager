@@ -1,4 +1,6 @@
 parameters:
+    timezone: 'Europe/Paris'
+
 
 services:
     _defaults:

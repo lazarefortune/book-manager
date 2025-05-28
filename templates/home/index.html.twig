@@ -1,9 +1,56 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Découvrez notre collection de livres{% endblock %}
 
 {% block body %}
-<div class="container-box py-10">
-    <h1 class="text-5xl text-blue-500">Hello HomeController!</h1>
-</div>
+    <div class="container-box py-10">
+        <h1 class="text-3xl font-semibold mb-6 text-slate-800">Notre bibliothèque</h1>
+
+        <div class="mb-6 flex flex-wrap gap-2">
+            <a href="{{ path('app_home') }}"
+               class="text-sm px-3 py-1 rounded-full font-medium transition
+              {{ activeCategory is null ? 'bg-slate-900 text-white hover:text-white' : 'bg-gray-100 text-gray-700 hover:text-white hover:bg-slate-900' }}">
+                Tous
+            </a>
+
+            {% for category in categories %}
+                <a href="{{ path('app_home', {'category': category.name}) }}"
+                   class="text-sm px-3 py-1 rounded-full font-medium transition
+                  {{ activeCategory == category.name ? 'bg-slate-900 text-white hover:text-white' : 'bg-gray-100 text-gray-700 hover:text-white hover:bg-slate-900' }}">
+                    {{ category.name }}
+                </a>
+            {% endfor %}
+        </div>
+
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+            {% for book in books %}
+                <div class="bg-white shadow-md rounded-xl p-5 border border-gray-100 flex flex-col justify-between hover:shadow-lg transition">
+                    <div class="mb-3">
+                        <h2 class="text-lg font-bold text-amber-800 mb-1">{{ book.title }}</h2>
+                        <p class="text-sm text-slate-500">par {{ book.author }}</p>
+                    </div>
+
+                    {% if book.publishedAt %}
+                        <p class="text-xs text-slate-400 mb-2">Publié le {{ book.publishedAt | format_datetime('long', 'short', locale='fr') }}</p>
+                    {% endif %}
+
+                    <p class="text-sm text-slate-700 line-clamp-3 mb-4">
+                        {{ book.summary|default('Aucun résumé.') }}
+                    </p>
+
+                    <div class="mt-auto flex justify-between items-center">
+                        {% if book.category %}
+                            <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">{{ book.category.name }}</span>
+                        {% endif %}
+
+                        <a href="{{ path('app_book_show', {id: book.id}) }}"
+                           class="text-xs text-blue-600 hover:underline">Voir plus →</a>
+                    </div>
+                </div>
+            {% else %}
+                <p class="text-slate-600 col-span-full">Aucun livre pour l’instant.</p>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
