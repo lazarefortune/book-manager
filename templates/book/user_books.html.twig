@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes livres{% endblock %}
+
+{% block body %}
+    <div class="container-box py-10">
+        <h1 class="text-3xl font-semibold mb-6 text-slate-800">Mes livres ajoutés</h1>
+
+        {% if books is empty %}
+            <p class="text-slate-600">Tu n’as ajouté aucun livre pour le moment.</p>
+        {% else %}
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+                {% for book in books %}
+                    <div class="bg-white shadow-md rounded-xl p-5 border border-gray-100 flex flex-col justify-between hover:shadow-lg transition">
+                        <div class="mb-3">
+                            <h2 class="text-lg font-bold text-amber-800 mb-1">{{ book.title }}</h2>
+                            <p class="text-sm text-slate-500">par {{ book.author }}</p>
+                        </div>
+
+                        {% if book.publishedAt %}
+                            <p class="text-xs text-slate-400 mb-2">
+                                Publié le {{ book.publishedAt|date('d/m/Y') }}
+                            </p>
+                        {% endif %}
+
+                        <p class="text-sm text-slate-700 line-clamp-3 mb-4">
+                            {{ book.summary|default('Aucun résumé.') }}
+                        </p>
+
+                        <div class="mt-auto flex justify-between items-center">
+                            {% if book.category %}
+                                <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">
+                                {{ book.category.name }}
+                            </span>
+                            {% endif %}
+
+                            <a href="{{ path('app_book_show', {id: book.id}) }}"
+                               class="text-xs text-blue-600 hover:underline">Voir →</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

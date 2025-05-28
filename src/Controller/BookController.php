@@ -57,6 +57,7 @@ final class BookController extends AbstractController
 
     #[Route('/{id}/edit', name: 'app_book_edit', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_USER')]
+    #[IsGranted('BOOK_MANAGE', subject: 'book')]
     public function edit(Request $request, Book $book, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(BookForm::class, $book);
@@ -78,6 +79,7 @@ final class BookController extends AbstractController
 
     #[Route('/{id}', name: 'app_book_delete', methods: ['POST'])]
     #[IsGranted('ROLE_USER')]
+    #[IsGranted('BOOK_MANAGE', subject: 'book')]
     public function delete(Request $request, Book $book, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$book->getId(), $request->getPayload()->getString('_token'))) {
