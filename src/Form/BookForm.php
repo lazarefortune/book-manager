@@ -38,6 +38,7 @@ class BookForm extends AbstractType
             ])
             ->add('publishedAt', null, [
                 'widget' => 'single_text',
+                'label' => 'Date de publication',
                 'attr' => [
                     'class' => 'flatpickr-datetime form-input',
                 ]
@@ -48,7 +49,10 @@ class BookForm extends AbstractType
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'name',
-                'label' => 'Catégorie'
+                'label' => 'Catégorie',
+                'attr' => [
+                    'class' => 'form-select',
+                ]
             ])
         ;
     }

@@ -1,42 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Book{% endblock %}
+{% block title %}{{ book.title }}{% endblock %}
 
 {% block body %}
-    <h1>Book</h1>
+    <section class="container-box py-12">
+        <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="p-6 sm:p-8">
+                <div class="mb-6">
+                    <h1 class="text-4xl font-bold text-slate-900 leading-tight mb-2">{{ book.title }}</h1>
+                    <p class="text-slate-500 text-sm">par <strong>{{ book.author }}</strong></p>
+                    {% if book.publishedAt %}
+                        <p class="text-xs text-slate-400 mt-1">Publié le {{ book.publishedAt|date('d/m/Y') }}</p>
+                    {% endif %}
+                </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ book.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ book.title }}</td>
-            </tr>
-            <tr>
-                <th>Author</th>
-                <td>{{ book.author }}</td>
-            </tr>
-            <tr>
-                <th>Summary</th>
-                <td>{{ book.summary }}</td>
-            </tr>
-            <tr>
-                <th>PublishedAt</th>
-                <td>{{ book.publishedAt ? book.publishedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>IsAvailable</th>
-                <td>{{ book.isAvailable ? 'Yes' : 'No' }}</td>
-            </tr>
-        </tbody>
-    </table>
+                {% if book.category %}
+                    <div class="mb-4">
+                    <span class="inline-block text-xs bg-amber-100 text-amber-800 px-3 py-1 rounded-full">
+                        {{ book.category.name }}
+                    </span>
+                    </div>
+                {% endif %}
 
-    <a href="{{ path('app_book_index') }}">back to list</a>
+                <div class="mb-6">
+                    <h2 class="text-lg font-semibold text-slate-700 mb-2">Résumé</h2>
+                    <p class="text-slate-700 leading-relaxed text-sm whitespace-pre-line">
+                        {{ book.summary|default('Aucun résumé.') }}
+                    </p>
+                </div>
 
-    <a href="{{ path('app_book_edit', {'id': book.id}) }}">edit</a>
+                <div class="mb-6">
+                <span class="text-sm">
+                    Disponibilité :
+                    <strong class="{{ book.isAvailable ? 'text-green-600' : 'text-red-600' }}">
+                        {{ book.isAvailable ? 'Disponible' : 'Indisponible' }}
+                    </strong>
+                </span>
+                </div>
 
-    {{ include('book/_delete_form.html.twig') }}
+                <div class="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-4 mt-8 pt-4 border-t">
+                    <a href="{{ path('app_home') }}" class="text-sm text-blue-600 hover:underline">
+                        ← Retour à l'accueil
+                    </a>
+
+                    {% if is_granted('BOOK_MANAGE', book) %}
+                        <div class="flex gap-3">
+                            <a href="{{ path('app_book_edit', {id: book.id}) }}"
+                               class="inline-block btn btn-primary">Modifier</a>
+                            {{ include('book/_delete_form.html.twig') }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

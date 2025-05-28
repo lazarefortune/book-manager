@@ -6,21 +6,31 @@
     <div class="container-box py-10">
         <h1 class="text-3xl font-semibold mb-6 text-slate-800">Notre bibliothèque</h1>
 
-        <div class="mb-6 flex flex-wrap gap-2">
-            <a href="{{ path('app_home') }}"
-               class="text-sm px-3 py-1 rounded-full font-medium transition
-              {{ activeCategory is null ? 'bg-slate-900 text-white hover:text-white' : 'bg-gray-100 text-gray-700 hover:text-white hover:bg-slate-900' }}">
-                Tous
-            </a>
-
-            {% for category in categories %}
-                <a href="{{ path('app_home', {'category': category.name}) }}"
+        <div class="mb-6 flex flex-wrap justify-between items-center gap-4">
+            <div class="flex flex-wrap gap-2">
+                <a href="{{ path('app_home') }}"
                    class="text-sm px-3 py-1 rounded-full font-medium transition
-                  {{ activeCategory == category.name ? 'bg-slate-900 text-white hover:text-white' : 'bg-gray-100 text-gray-700 hover:text-white hover:bg-slate-900' }}">
-                    {{ category.name }}
+           {{ activeCategory is null ? 'bg-slate-900 text-white hover:text-white' : 'bg-gray-100 text-gray-700 hover:text-white hover:bg-slate-900' }}">
+                    Tous
                 </a>
-            {% endfor %}
+
+                {% for category in categories %}
+                    <a href="{{ path('app_home', {'category': category.name}) }}"
+                       class="text-sm px-3 py-1 rounded-full font-medium transition
+               {{ activeCategory == category.name ? 'bg-slate-900 text-white hover:text-white' : 'bg-gray-100 text-gray-700 hover:text-white hover:bg-slate-900' }}">
+                        {{ category.name }}
+                    </a>
+                {% endfor %}
+            </div>
+
+            {% if is_granted('ROLE_USER') %}
+                <a href="{{ path('app_book_new') }}"
+                   class="inline-flex btn btn-sm btn-primary">
+                    + Ajouter un livre
+                </a>
+            {% endif %}
         </div>
+
 
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">

@@ -26,7 +26,7 @@ select {
 }
 
 .form-select {
-  @apply rounded-xl border text-base text-slate-900 dark:text-slate-950 border-slate-300 bg-white;
+  @apply px-4 py-3 w-full rounded-xl border text-base text-slate-900 dark:text-slate-950 border-slate-300 bg-white;
 }
 
 .form-checkbox {

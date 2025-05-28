@@ -32,11 +32,13 @@ final class BookController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $book->setAuthor($this->getUser());
+            $book->setOwner($this->getUser());
             $entityManager->persist($book);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_book_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_book_show', [
+                'id' => $book->getId(),
+            ], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('book/new.html.twig', [
@@ -63,7 +65,9 @@ final class BookController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_book_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_book_show', [
+                'id' => $book->getId(),
+            ], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('book/edit.html.twig', [
@@ -81,6 +85,6 @@ final class BookController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_book_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
     }
 }
