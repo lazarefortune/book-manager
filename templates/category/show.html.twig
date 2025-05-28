@@ -1,26 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Category{% endblock %}
+{% block title %}Détail de la catégorie{% endblock %}
 
 {% block body %}
-    <h1>Category</h1>
+    <section class="container-box py-12">
+        <div class="max-w-xl mx-auto bg-white rounded-xl shadow-md p-6 sm:p-8 border border-gray-100">
+            <h1 class="text-2xl font-bold text-slate-800 mb-6">Catégorie #{{ category.id }}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ category.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ category.name }}</td>
-            </tr>
-        </tbody>
-    </table>
+            <dl class="text-sm text-slate-700 space-y-4">
+                <div>
+                    <dt class="font-medium text-slate-600">Nom</dt>
+                    <dd class="mt-1">{{ category.name }}</dd>
+                </div>
+            </dl>
 
-    <a href="{{ path('app_category_index') }}">back to list</a>
+            <div class="flex justify-between items-center mt-6 border-t pt-4">
+                <a href="{{ path('app_category_index') }}" class="text-sm text-blue-600 hover:underline">
+                    ← Retour à la liste
+                </a>
 
-    <a href="{{ path('app_category_edit', {'id': category.id}) }}">edit</a>
-
-    {{ include('category/_delete_form.html.twig') }}
+                <div class="flex gap-4">
+                    <a href="{{ path('app_category_edit', {'id': category.id}) }}"
+                       class="btn btn-primary">Modifier</a>
+                    {{ include('category/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

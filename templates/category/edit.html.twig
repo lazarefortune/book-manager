@@ -1,13 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Category{% endblock %}
+{% block title %}Modifier la catégorie{% endblock %}
 
 {% block body %}
-    <h1>Edit Category</h1>
+    <section class="container-box py-12">
+        <div class="max-w-xl mx-auto bg-white rounded-xl shadow-md p-6 sm:p-8 border border-gray-100">
+            <h1 class="text-2xl font-bold text-slate-800 mb-6">Modifier la catégorie</h1>
 
-    {{ include('category/_form.html.twig', {'button_label': 'Update'}) }}
+            {{ include('category/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-    <a href="{{ path('app_category_index') }}">back to list</a>
+            <div class="flex justify-between items-center mt-6 border-t pt-4">
+                <a href="{{ path('app_category_index') }}" class="text-sm text-blue-600 hover:underline">
+                    ← Retour à la liste
+                </a>
 
-    {{ include('category/_delete_form.html.twig') }}
+                {{ include('category/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </section>
 {% endblock %}

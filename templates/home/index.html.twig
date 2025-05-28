@@ -21,6 +21,15 @@
                         {{ category.name }}
                     </a>
                 {% endfor %}
+
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div>
+                        <a href="{{ path('app_category_index') }}"
+                           class="px-3 py-1 rounded-full font-medium transition text-sm text-slate-600 hover:underline hover:text-slate-900">
+                            Gérer les catégories
+                        </a>
+                    </div>
+                {% endif %}
             </div>
 
             {% if is_granted('ROLE_USER') %}
